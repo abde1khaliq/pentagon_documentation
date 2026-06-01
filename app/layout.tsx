@@ -11,8 +11,18 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "Pentagon",
-  description: "",
+  title: "Pentagon Web Framework",
+  description: "A modern, blazing‑fast high‑performance Python web framework built for developers who want to ship APIs and applications without boilerplate.",
+  keywords: ["python", "web framework", "api", "high performance", "pentagon", "backend"],
+  authors: [{ name: "@abdelkhaliq" }],
+  openGraph: {
+    title: "Pentagon Framework",
+    description: "Build APIs and web applications effortlessly with a clean, intuitive structure.",
+    url: "https://pentagon.dev",
+    siteName: "Pentagon Documentation",
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
