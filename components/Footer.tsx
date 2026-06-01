@@ -25,9 +25,6 @@ const Footer = () => {
           Pentagon Framework
         </Text>
       </Flex>
-      <Text fontFamily="var(--font-mono)" fontSize="11px" color="var(--text-4)">
-        MIT License
-      </Text>
     </Flex>
   );
 };
