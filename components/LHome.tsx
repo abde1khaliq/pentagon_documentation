@@ -1,6 +1,7 @@
-import { Box, Flex, Text, Heading, Image, Link } from "@chakra-ui/react";
+"use client";
+
+import { Box, Flex, Text, Heading, Image, Link, Icon } from "@chakra-ui/react";
 import { CodeSnippetBlock } from "./CodeBlock";
-import { Icon } from "@chakra-ui/react";
 import { BsGithub, BsTwitterX, BsArrowRight } from "react-icons/bs";
 import {
   confirmationCommand,
@@ -10,13 +11,13 @@ import {
 import { ScrollRail } from "./ScrollRail";
 import Footer from "./Footer";
 
-export const Divider = () => <Box height="1px" bg="var(--border)" my="64px" />;
+export const Divider = () => <Box height="1px" bg="var(--border)" my={{ base: "32px", md: "64px" }} />;
 
 const LHome = () => {
   return (
     <>
-      <Box flex="1" minW="0" overflowY="auto">
-        <Box maxW="1000px" mx="auto" px="48px" pt="72px" pb="96px">
+      <Box flex="1" minW="0" overflowY="auto" pt={{ base: "60px", lg: "0" }}>
+        <Box maxW="1000px" mx="auto" px={{ base: "16px", md: "48px" }} pt={{ base: "40px", md: "72px" }} pb="96px">
           <Box
             id="hero"
             data-section-title="Overview"
@@ -25,20 +26,26 @@ const LHome = () => {
             zIndex="1"
             mb="0"
           >
-            <Flex align="center" gap="20px" mb="28px" justifyContent="center">
+            <Flex 
+              align="center" 
+              gap={{ base: "10px", md: "20px" }} 
+              mb="28px" 
+              justifyContent="center"
+              direction={{ base: "column", md: "row" }}
+            >
               <Image
                 src="https://ik.imagekit.io/cin2tn3bj/penta_logo_white.png"
-                w="100px"
-                h="100px"
+                w={{ base: "60px", md: "100px" }}
+                h={{ base: "60px", md: "100px" }}
               />
               <Text
                 fontFamily="var(--font-display)"
-                fontSize="65px"
+                fontSize={{ base: "36px", md: "65px" }}
                 fontWeight="800"
                 letterSpacing="-0.04em"
                 color="var(--text-1)"
                 lineHeight="1"
-                mt="20px"
+                mt={{ base: "0", md: "20px" }}
               >
                 PENTAGON
               </Text>
@@ -46,7 +53,7 @@ const LHome = () => {
 
             <Text
               fontFamily="var(--font-body)"
-              fontSize="17px"
+              fontSize={{ base: "15px", md: "17px" }}
               textAlign="center"
               color="var(--text-2)"
               lineHeight="1.75"
@@ -60,7 +67,7 @@ const LHome = () => {
             </Text>
 
             {/* Author + links row */}
-            <Flex align="center" gap="6px" wrap="wrap">
+            <Flex align="center" gap="6px" wrap="wrap" justify="center">
               {/* Avatar */}
               <Link
                 as="a"
@@ -83,7 +90,7 @@ const LHome = () => {
                 textDecoration="none"
               >
                 <Image
-                  src="https://github.com/abde1khaliq.png"
+                  src="https://github.com/abdelkhaliq.png"
                   alt="@abdelkhaliq"
                   w="18px"
                   h="18px"
@@ -193,7 +200,7 @@ const LHome = () => {
           >
             <Heading
               fontFamily="var(--font-display)"
-              fontSize="30px"
+              fontSize={{ base: "24px", md: "30px" }}
               fontWeight="700"
               letterSpacing="-0.025em"
               color="var(--text-1)"
@@ -203,7 +210,7 @@ const LHome = () => {
             </Heading>
             <Text
               fontFamily="var(--font-body)"
-              fontSize="17px"
+              fontSize={{ base: "15px", md: "17px" }}
               color="var(--text-2)"
               mb="36px"
               fontWeight="300"
@@ -227,7 +234,7 @@ const LHome = () => {
           >
             <Heading
               fontFamily="var(--font-display)"
-              fontSize="30px"
+              fontSize={{ base: "24px", md: "30px" }}
               fontWeight="700"
               letterSpacing="-0.025em"
               color="var(--text-1)"
@@ -237,7 +244,7 @@ const LHome = () => {
             </Heading>
             <Text
               fontFamily="var(--font-body)"
-              fontSize="17px"
+              fontSize={{ base: "15px", md: "17px" }}
               color="var(--text-2)"
               mb="36px"
               fontWeight="300"
@@ -249,7 +256,7 @@ const LHome = () => {
             <CodeSnippetBlock snippet={installationCommand} />
             <Text
               fontFamily="var(--font-body)"
-              fontSize="17px"
+              fontSize={{ base: "15px", md: "17px" }}
               color="var(--text-2)"
               mt="24px"
               mb="20px"
@@ -266,8 +273,8 @@ const LHome = () => {
             alignItems="center"
             justifyContent="space-between"
             mt="80px"
-            px="24px"
-            py="18px"
+            px="20px"
+            py="16px"
             borderRadius="10px"
             border="1px solid var(--border)"
             bg="var(--bg-surface)"

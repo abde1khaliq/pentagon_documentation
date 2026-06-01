@@ -23,6 +23,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning
       lang="en"
+      data-scroll-behavior="smooth"
     >
       <body className={`${syne.variable} font-syne`}>
         <Provider>

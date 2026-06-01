@@ -8,13 +8,15 @@ import {
   Text,
   Input,
   Image,
+  IconButton,
+  Drawer,
+  Portal,
 } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
-import { BiSearch } from "react-icons/bi";
-import { BsGithub, BsChevronRight } from "react-icons/bs";
+import { BiSearch, BiMenu } from "react-icons/bi";
+import { BsGithub, BsChevronRight, BsX } from "react-icons/bs";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
-
 
 interface NavLeaf {
   kind: "leaf";
@@ -91,10 +93,12 @@ const LeafButton = ({
   item,
   isActive,
   depth = 0,
+  onClick,
 }: {
   item: NavLeaf;
   isActive: boolean;
   depth?: number;
+  onClick?: () => void;
 }) => (
   <ChakraLink
     as={NextLink}
@@ -118,6 +122,7 @@ const LeafButton = ({
     transition="background 150ms ease, color 150ms ease"
     _hover={{ bg: "rgba(255,255,255,0.05)", color: "var(--text-1)" }}
     _focus={{ boxShadow: "none", outline: "none" }}
+    onClick={onClick}
   >
     {item.title}
   </ChakraLink>
@@ -128,11 +133,13 @@ const TreeButton = ({
   isActive,
   isChildActive,
   currentId,
+  onLeafClick,
 }: {
   item: NavTree;
   isActive: boolean;
   isChildActive: boolean;
   currentId: string;
+  onLeafClick?: () => void;
 }) => {
   const [open, setOpen] = useState(isActive || isChildActive);
 
@@ -184,7 +191,7 @@ const TreeButton = ({
 
       <Box
         overflow="hidden"
-        maxH={open ? "400px" : "0px"}
+        maxH={open ? "600px" : "0px"}
         transition="max-height 220ms cubic-bezier(0.4,0,0.2,1)"
       >
         <Box
@@ -202,6 +209,7 @@ const TreeButton = ({
                 item={child}
                 isActive={currentId === child.id}
                 depth={1}
+                onClick={onLeafClick}
               />
             ))}
           </Flex>
@@ -211,10 +219,9 @@ const TreeButton = ({
   );
 };
 
-const SideBar = () => {
+const SidebarContent = ({ onLeafClick }: { onLeafClick?: () => void }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const pathname = usePathname();
-
   const currentId = pathname === "/" ? "" : pathname.replace(/^\//, "");
 
   const allLeaves: NavLeaf[] = NAV.flatMap((g) =>
@@ -231,18 +238,7 @@ const SideBar = () => {
   );
 
   return (
-    <Flex
-      position="sticky"
-      top={0}
-      height="100vh"
-      width="260px"
-      flexShrink={0}
-      bg="var(--bg-surface)"
-      borderRight="1px solid var(--border)"
-      overflow="hidden"
-      flexDirection="column"
-      zIndex={40}
-    >
+    <Flex height="100%" flexDirection="column">
       {/* ── Logo ── */}
       <Flex
         align="center"
@@ -300,7 +296,6 @@ const SideBar = () => {
       {/* ── Nav ── */}
       <Box flex={1} overflowY="auto" px={2} pb={2}>
         {isSearching ? (
-          /* Search results */
           <Flex direction="column" gap="1px">
             {searchResults.length === 0 ? (
               <Text
@@ -318,6 +313,7 @@ const SideBar = () => {
                   key={item.id}
                   item={item}
                   isActive={currentId === item.id}
+                  onClick={onLeafClick}
                 />
               ))
             )}
@@ -348,6 +344,7 @@ const SideBar = () => {
                           key={item.id}
                           item={item}
                           isActive={currentId === item.id}
+                          onClick={onLeafClick}
                         />
                       );
                     }
@@ -361,6 +358,7 @@ const SideBar = () => {
                         isActive={currentId === item.id}
                         isChildActive={isChildActive}
                         currentId={currentId}
+                        onLeafClick={onLeafClick}
                       />
                     );
                   })}
@@ -394,6 +392,101 @@ const SideBar = () => {
         </ChakraLink>
       </Flex>
     </Flex>
+  );
+};
+
+const SideBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
+  return (
+    <>
+      {/* Mobile Top Bar */}
+      <Flex
+        display={{ base: "flex", lg: "none" }}
+        position="fixed"
+        top={0}
+        left={0}
+        right={0}
+        h="60px"
+        bg="var(--bg-surface)"
+        borderBottom="1px solid var(--border)"
+        align="center"
+        px={4}
+        zIndex={100}
+        justify="space-between"
+      >
+        <NextLink href="/" style={{ display: "flex", alignItems: "center" }}>
+          <Image
+            src="https://ik.imagekit.io/cin2tn3bj/penta_logo_white.png"
+            alt="Pentagon"
+            width="24px"
+            height="24px"
+          />
+        </NextLink>
+        <IconButton
+          aria-label="Open Menu"
+          variant="ghost"
+          onClick={() => setIsOpen(true)}
+          color="var(--text-1)"
+          _hover={{ bg: "transparent" }}
+          _active={{ bg: "transparent" }}
+        >
+          <Icon as={BiMenu} boxSize="24px" />
+        </IconButton>
+      </Flex>
+
+      {/* Desktop Sidebar */}
+      <Box
+        display={{ base: "none", lg: "block" }}
+        position="sticky"
+        top={0}
+        height="100vh"
+        width="260px"
+        flexShrink={0}
+        bg="var(--bg-surface)"
+        borderRight="1px solid var(--border)"
+        overflow="hidden"
+        zIndex={40}
+      >
+        <SidebarContent />
+      </Box>
+
+      {/* Mobile Drawer */}
+      <Drawer.Root open={isOpen} onOpenChange={(e) => setIsOpen(e.open)}>
+        <Portal>
+          <Drawer.Backdrop bg="rgba(0,0,0,0.8)" />
+          <Drawer.Positioner boxSize="full" width="280px">
+            <Drawer.Content
+              bg="var(--bg-surface)"
+              borderRight="1px solid var(--border)"
+              height="100vh"
+              p={0}
+            >
+              <Box position="relative" h="full">
+                <IconButton
+                  aria-label="Close Menu"
+                  position="absolute"
+                  top="16px"
+                  right="12px"
+                  variant="ghost"
+                  onClick={() => setIsOpen(false)}
+                  zIndex={10}
+                  color="var(--text-3)"
+                >
+                    <Icon as={BsX} boxSize="24px" />
+                </IconButton>
+                <SidebarContent onLeafClick={() => setIsOpen(false)} />
+              </Box>
+            </Drawer.Content>
+          </Drawer.Positioner>
+        </Portal>
+      </Drawer.Root>
+    </>
   );
 };
 

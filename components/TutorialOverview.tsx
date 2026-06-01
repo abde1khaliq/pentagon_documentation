@@ -9,8 +9,8 @@ import { ScrollRail } from "./ScrollRail";
 const TutorialOverview = () => {
   return (
     <>
-      <Box flex="1" minW="0" overflowY="auto">
-        <Box maxW="1000px" mx="auto" px="48px" pt="72px" pb="96px">
+      <Box flex="1" minW="0" overflowY="auto" pt={{ base: "60px", lg: "0" }}>
+        <Box maxW="1000px" mx="auto" px={{ base: "16px", md: "48px" }} pt={{ base: "40px", md: "72px" }} pb="96px">
           <Box
             id="tutorial-overview"
             data-section-title="Tutorial Overview"
@@ -18,7 +18,7 @@ const TutorialOverview = () => {
           >
             <Heading
               fontFamily="var(--font-syne)"
-              fontSize="42px"
+              fontSize={{ base: "32px", md: "42px" }}
               fontWeight="800"
               letterSpacing="-0.04em"
               color="var(--text-1)"
@@ -28,7 +28,7 @@ const TutorialOverview = () => {
             </Heading>
             <Text
               fontFamily="var(--font-syne)"
-              fontSize="19px"
+              fontSize={{ base: "16px", md: "19px" }}
               color="var(--text-2)"
               mb="32px"
               fontWeight="300"
@@ -41,7 +41,7 @@ const TutorialOverview = () => {
 
             <Box 
               bg="var(--bg-surface)" 
-              p="32px" 
+              p={{ base: "20px", md: "32px" }} 
               borderRadius="16px" 
               border="1px solid var(--border)"
               mb="48px"
@@ -61,11 +61,12 @@ const TutorialOverview = () => {
                 fontFamily="var(--font-mono)"
                 fontSize="13px"
                 color="var(--accent-bright)"
+                overflowX="auto"
               >
                 <pre>{`{
   "id": 1,
   "title": "Complete Pentagon Tutorial",
-  "description": "Follow the steps to build a Task API",
+  "description": "Follow steps to build a Task API",
   "completed": false
 }`}</pre>
               </Box>
@@ -74,35 +75,35 @@ const TutorialOverview = () => {
             <Heading size="md" mb="24px" color="var(--text-1)" fontFamily="var(--font-syne)">
                 Project Roadmap
             </Heading>
-            <Flex direction="column" gap="20px">
+            <Flex direction="column" gap="16px">
               {[
                 {
                   title: "Initializing the Project",
-                  desc: "Bootstrap your application from scratch using the Pentagon CLI.",
+                  desc: "Bootstrap your application using the CLI.",
                   icon: BsTerminal,
                   href: "/tutorial/step-0"
                 },
                 {
                   title: "Defining the Task Model",
-                  desc: "Create the database structure using SQLAlchemy.",
+                  desc: "Create database structure with SQLAlchemy.",
                   icon: BsDatabase,
                   href: "/tutorial/step-1"
                 },
                 {
                   title: "Creating Data Schemas",
-                  desc: "Define request and response validation with Pydantic.",
+                  desc: "Define validation with Pydantic.",
                   icon: BsShieldCheck,
                   href: "/tutorial/step-2"
                 },
                 {
                   title: "Implementing the Service Layer",
-                  desc: "Write the business logic to interact with the database.",
+                  desc: "Write the logic to interact with DB.",
                   icon: BsCodeSquare,
                   href: "/tutorial/step-3"
                 },
                 {
                   title: "Building the Endpoints",
-                  desc: "Create the HTTP routes to expose your logic to the world.",
+                  desc: "Create HTTP routes to expose logic.",
                   icon: BsTerminal,
                   href: "/tutorial/step-4"
                 }
@@ -112,8 +113,8 @@ const TutorialOverview = () => {
                   href={step.href}
                   display="flex"
                   alignItems="center"
-                  gap="20px"
-                  p="20px"
+                  gap="16px"
+                  p="16px"
                   borderRadius="12px"
                   border="1px solid var(--border)"
                   bg="var(--bg-surface)"
@@ -128,10 +129,10 @@ const TutorialOverview = () => {
                     <Icon as={step.icon} boxSize="18px" />
                   </Box>
                   <Box>
-                    <Text fontWeight="600" color="var(--text-1)" fontSize="16px">
+                    <Text fontWeight="600" color="var(--text-1)" fontSize="15px">
                       {step.title}
                     </Text>
-                    <Text color="var(--text-3)" fontSize="13px">
+                    <Text color="var(--text-3)" fontSize="12px" display={{ base: "none", sm: "block" }}>
                       {step.desc}
                     </Text>
                   </Box>
@@ -147,8 +148,8 @@ const TutorialOverview = () => {
             alignItems="center"
             justifyContent="space-between"
             mt="80px"
-            px="24px"
-            py="18px"
+            px="20px"
+            py="16px"
             borderRadius="10px"
             border="1px solid var(--border)"
             bg="var(--bg-surface)"

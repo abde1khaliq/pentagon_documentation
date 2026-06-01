@@ -11,8 +11,8 @@ import { ScrollRail } from "./ScrollRail";
 const DocConfig = () => {
   return (
     <>
-      <Box flex="1" minW="0" overflowY="auto">
-        <Box maxW="1000px" mx="auto" px="48px" pt="72px" pb="96px">
+      <Box flex="1" minW="0" overflowY="auto" pt={{ base: "60px", lg: "0" }}>
+        <Box maxW="1000px" mx="auto" px={{ base: "16px", md: "48px" }} pt={{ base: "40px", md: "72px" }} pb="96px">
           <Box
             id="config-py"
             data-section-title="config.py"
@@ -20,7 +20,7 @@ const DocConfig = () => {
           >
             <Heading
               fontFamily="var(--font-syne)"
-              fontSize="30px"
+              fontSize={{ base: "24px", md: "30px" }}
               fontWeight="700"
               letterSpacing="-0.025em"
               color="var(--text-1)"
@@ -30,7 +30,7 @@ const DocConfig = () => {
             </Heading>
             <Text
               fontFamily="var(--font-syne)"
-              fontSize="17px"
+              fontSize={{ base: "15px", md: "17px" }}
               color="var(--text-2)"
               mb="36px"
               fontWeight="300"
@@ -113,8 +113,8 @@ const DocConfig = () => {
             alignItems="center"
             justifyContent="space-between"
             mt="80px"
-            px="24px"
-            py="18px"
+            px="20px"
+            py="16px"
             borderRadius="10px"
             border="1px solid var(--border)"
             bg="var(--bg-surface)"

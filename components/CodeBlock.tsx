@@ -1,17 +1,28 @@
 import { CodeBlock, createShikiAdapter, Icon } from "@chakra-ui/react"
 import type { HighlighterGeneric } from "shiki"
 
-let highlighter: HighlighterGeneric<any, any> | null = null
+let highlighterPromise: Promise<HighlighterGeneric<any, any>> | null = null
 
 const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
   async load() {
-    if (highlighter) return highlighter
-    const { createHighlighter } = await import("shiki")
-    highlighter = await createHighlighter({
-      langs: ["python", "bash"],
-      themes: ["github-dark"],
+    if (!highlighterPromise) {
+      const { createHighlighter } = await import("shiki")
+      highlighterPromise = createHighlighter({
+        langs: ["python", "bash"],
+        themes: ["github-dark"],
+      })
+    }
+    const highlighter = await highlighterPromise
+    
+    // Return a proxy that ignores dispose() calls to keep the singleton alive
+    return new Proxy(highlighter, {
+      get(target, prop, receiver) {
+        if (prop === "dispose") {
+          return () => {} // No-op
+        }
+        return Reflect.get(target, prop, receiver)
+      },
     })
-    return highlighter
   },
   theme: "github-dark",
 })

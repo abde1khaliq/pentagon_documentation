@@ -11,8 +11,8 @@ import { ScrollRail } from "./ScrollRail";
 const TutorialStep1 = () => {
   return (
     <>
-      <Box flex="1" minW="0" overflowY="auto">
-        <Box maxW="1000px" mx="auto" px="48px" pt="72px" pb="96px">
+      <Box flex="1" minW="0" overflowY="auto" pt={{ base: "60px", lg: "0" }}>
+        <Box maxW="1000px" mx="auto" px={{ base: "24px", md: "48px" }} pt={{ base: "48px", md: "72px" }} pb="96px">
           <Box
             id="defining-the-task-model"
             data-section-title="Defining the Task Model"
@@ -20,7 +20,7 @@ const TutorialStep1 = () => {
           >
             <Heading
               fontFamily="var(--font-syne)"
-              fontSize="30px"
+              fontSize={{ base: "26px", md: "30px" }}
               fontWeight="700"
               letterSpacing="-0.025em"
               color="var(--text-1)"
@@ -30,7 +30,7 @@ const TutorialStep1 = () => {
             </Heading>
             <Text
               fontFamily="var(--font-syne)"
-              fontSize="17px"
+              fontSize={{ base: "16px", md: "17px" }}
               color="var(--text-2)"
               mb="36px"
               fontWeight="300"
@@ -65,7 +65,7 @@ const TutorialStep1 = () => {
 
             <Text
               fontFamily="var(--font-syne)"
-              fontSize="17px"
+              fontSize={{ base: "16px", md: "17px" }}
               color="var(--text-2)"
               mb="24px"
               fontWeight="300"
@@ -78,7 +78,7 @@ const TutorialStep1 = () => {
 
             <Text
               fontFamily="var(--font-syne)"
-              fontSize="17px"
+              fontSize={{ base: "16px", md: "17px" }}
               color="var(--text-2)"
               mt="48px"
               fontWeight="300"

@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Heading, Icon, Text, Link } from "@chakra-ui/react";
+import { Box, Heading, Icon, Text, Link, Stack } from "@chakra-ui/react";
 import { CodeSnippetBlock } from "./CodeBlock";
 import { docsMetadataCode } from "@/app/data/CodeSnippets";
 import { Divider } from "./LHome";
@@ -11,8 +11,8 @@ import { ScrollRail } from "./ScrollRail";
 const ApiDocs = () => {
   return (
     <>
-      <Box flex="1" minW="0" overflowY="auto">
-        <Box maxW="1000px" mx="auto" px="48px" pt="72px" pb="96px">
+      <Box flex="1" minW="0" overflowY="auto" pt={{ base: "60px", lg: "0" }}>
+        <Box maxW="1000px" mx="auto" px={{ base: "16px", md: "48px" }} pt={{ base: "40px", md: "72px" }} pb="96px">
           <Box
             id="automatic-documentation"
             data-section-title="Automatic Documentation"
@@ -20,7 +20,7 @@ const ApiDocs = () => {
           >
             <Heading
               fontFamily="var(--font-syne)"
-              fontSize="30px"
+              fontSize={{ base: "24px", md: "30px" }}
               fontWeight="700"
               letterSpacing="-0.025em"
               color="var(--text-1)"
@@ -30,7 +30,7 @@ const ApiDocs = () => {
             </Heading>
             <Text
               fontFamily="var(--font-syne)"
-              fontSize="17px"
+              fontSize={{ base: "15px", md: "17px" }}
               color="var(--text-2)"
               mb="36px"
               fontWeight="300"
@@ -56,7 +56,7 @@ const ApiDocs = () => {
           >
             <Heading
               fontFamily="var(--font-syne)"
-              fontSize="30px"
+              fontSize={{ base: "24px", md: "30px" }}
               fontWeight="700"
               letterSpacing="-0.025em"
               color="var(--text-1)"
@@ -66,7 +66,7 @@ const ApiDocs = () => {
             </Heading>
             <Text
               fontFamily="var(--font-syne)"
-              fontSize="17px"
+              fontSize={{ base: "15px", md: "17px" }}
               color="var(--text-2)"
               mb="36px"
               fontWeight="300"
@@ -85,6 +85,21 @@ const ApiDocs = () => {
               your API into logical sections and provide clear explanations for
               each endpoint.
             </Text>
+
+            <Text
+              fontFamily="var(--font-syne)"
+              fontSize={{ base: "15px", md: "17px" }}
+              color="var(--text-2)"
+              mt="48px"
+              fontWeight="300"
+              lineHeight="1.8"
+            >
+              Automatic docs keep your team in sync without extra effort. 
+              This concludes the **Learn** section. You now have a solid 
+              understanding of the framework's core building blocks. 
+              Head back to the **Overview** or start a new **Tutorial** 
+              to continue your journey.
+            </Text>
           </Box>
 
           <Link
@@ -92,8 +107,8 @@ const ApiDocs = () => {
             alignItems="center"
             justifyContent="space-between"
             mt="80px"
-            px="24px"
-            py="18px"
+            px="20px"
+            py="16px"
             borderRadius="10px"
             border="1px solid var(--border)"
             bg="var(--bg-surface)"
