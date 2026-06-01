@@ -25,7 +25,7 @@ const LHome = () => {
             zIndex="1"
             mb="0"
           >
-            <Flex align="center" gap="20px" mb="28px">
+            <Flex align="center" gap="20px" mb="28px" justifyContent="center">
               <Image
                 src="https://ik.imagekit.io/cin2tn3bj/penta_logo_white.png"
                 w="100px"
@@ -46,11 +46,12 @@ const LHome = () => {
 
             <Text
               fontFamily="var(--font-body)"
-              fontSize="16px"
+              fontSize="17px"
+              textAlign="center"
               color="var(--text-2)"
               lineHeight="1.75"
-              maxW="520px"
-              fontWeight="300"
+              maxW="100%"
+              fontWeight="500"
               mb="24px"
             >
               A modern, blazing‑fast high‑performance Python web framework built
@@ -202,7 +203,7 @@ const LHome = () => {
             </Heading>
             <Text
               fontFamily="var(--font-body)"
-              fontSize="15px"
+              fontSize="17px"
               color="var(--text-2)"
               mb="36px"
               fontWeight="300"
@@ -236,7 +237,7 @@ const LHome = () => {
             </Heading>
             <Text
               fontFamily="var(--font-body)"
-              fontSize="15px"
+              fontSize="17px"
               color="var(--text-2)"
               mb="36px"
               fontWeight="300"
@@ -248,7 +249,7 @@ const LHome = () => {
             <CodeSnippetBlock snippet={installationCommand} />
             <Text
               fontFamily="var(--font-body)"
-              fontSize="15px"
+              fontSize="17px"
               color="var(--text-2)"
               mt="24px"
               mb="20px"

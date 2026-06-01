@@ -27,7 +27,7 @@ const FileStructure = () => {
             </Heading>
             <Text
               fontFamily="var(--font-body)"
-              fontSize="15px"
+              fontSize="17px"
               color="var(--text-2)"
               mb="36px"
               fontWeight="300"
@@ -56,7 +56,7 @@ const FileStructure = () => {
                   style={{
                     margin: 0,
                     fontFamily: "var(--font-mono)",
-                    fontSize: "13px",
+                    fontSize: "14px",
                     lineHeight: "1.9",
                     color: "var(--text-2)",
                     whiteSpace: "pre",
@@ -84,74 +84,136 @@ const FileStructure = () => {
               </Box>
             </Box>
 
-            {/* Descriptions grid */}
-            <Flex direction="column" gap="2px">
+            <Flex direction="column" gap="0">
+              <Text
+                fontFamily="var(--font-mono)"
+                fontSize="14px"
+                color="white"
+                letterSpacing="0.14em"
+                textTransform="uppercase"
+                px="20px"
+                pb="10px"
+                pt="4px"
+              >
+                Root
+              </Text>
+
               {[
                 {
                   name: "runserver.py",
-                  desc: "Entry point. Run this file to start the development server.",
+                  desc: "This file is used to start your web application.",
                 },
                 {
                   name: "config.py",
-                  desc: "This config file is to load all web application components. such as routes and models",
-                },
-                {
-                  name: "app/",
-                  desc: "The core application package. Everything inside here is your actual product.",
-                },
-                {
-                  name: "app/database/",
-                  desc: "Database setup and connection logic. connection.py bootstraps your DB client and exposes a reusable session or engine.",
-                },
-                {
-                  name: "app/models/",
-                  desc: "ORM models or data classes that map to your database tables and define your data shapes.",
-                },
-                {
-                  name: "app/router/",
-                  desc: "Route definitions for your web application, index.py is just an example.",
-                },
-                {
-                  name: "app/services/",
-                  desc: "Business logic layer. Keeps your routes thin by handling data processing, external calls, and complex operations.",
-                },
-                {
-                  name: "app/schemas/",
-                  desc: "Request and response schemas. Defines validation rules and serialization for data coming in and going out.",
-                },
-                {
-                  name: "app/utils/",
-                  desc: "Shared helper functions and utilities that don't belong to a specific layer.",
+                  desc: "This file is what your web application uses to mount the endpoints, models etc automatically.",
                 },
               ].map((item, i) => (
                 <Flex
                   key={i}
                   align="flex-start"
-                  gap="16px"
+                  gap="14px"
                   px="20px"
-                  py="14px"
-                  borderRadius="8px"
-                  bg="transparent"
-                  border="1px solid transparent"
+                  py="16px"
+                  borderTop="1px solid var(--border)"
+                  transition="background 160ms ease"
+                  _hover={{ bg: "var(--bg-raised)" }}
                 >
-
-                  <Box>
+                  <Box flex="1">
+                    <Flex align="center" gap="8px" mb="5px">
+                      <Text
+                        fontFamily="var(--font-syne)"
+                        fontSize="17px"
+                        fontWeight="500"
+                        color="var(--text-1)"
+                        letterSpacing="0.01em"
+                      >
+                        {item.name}
+                      </Text>
+                    </Flex>
                     <Text
-                      fontFamily="var(--font-mono)"
-                      fontSize="12.5px"
-                      fontWeight="500"
-                      color="var(--accent-bright)"
-                      mb="3px"
-                      letterSpacing="0.01em"
-                    >
-                      {item.name}
-                    </Text>
-                    <Text
-                      fontFamily="var(--font-body)"
-                      fontSize="13.5px"
+                      fontFamily="var(--font-syne)"
+                      fontSize="14px"
                       color="var(--text-2)"
-                      lineHeight="1.65"
-                      fontWeight="300"
+                      lineHeight="1.7"
+                      fontWeight="500"
+                    >
+                      {item.desc}
+                    </Text>
+                  </Box>
+                </Flex>
+              ))}
+
+              {/* app/ group */}
+              <Text
+                fontFamily="var(--font-mono)"
+                fontSize="14px"
+                color="white"
+                letterSpacing="0.14em"
+                textTransform="uppercase"
+                px="20px"
+                pb="10px"
+                pt="28px"
+              >
+                app/
+              </Text>
+
+              {[
+                {
+                  name: "database/",
+                  desc: "This directory holds your database connections and anything related to talking to your database.",
+                },
+                {
+                  name: "models/",
+                  desc: "This directory is where you define your data models.",
+                },
+                {
+                  name: "router/",
+                  desc: "Your endpoints end up here, Pentagon mounts it automatically.",
+                },
+                {
+                  name: "services/",
+                  desc: "This is where you write your business logic.",
+                },
+                {
+                  name: "schemas/",
+                  desc: "This is where you define your data validation schemas.",
+                },
+                {
+                  name: "utils/",
+                  desc: "This is a general purpose utilities directory, you can put anything in here that doesn't fit in the other directories.",
+                },
+              ].map((item, i, arr) => (
+                <Flex
+                  key={i}
+                  align="flex-start"
+                  gap="14px"
+                  px="20px"
+                  py="16px"
+                  borderTop="1px solid var(--border)"
+                  borderBottom={
+                    i === arr.length - 1 ? "1px solid var(--border)" : "none"
+                  }
+                  transition="background 160ms ease"
+                  _hover={{ bg: "var(--bg-raised)" }}
+                >
+                  <Box flex="1">
+                    <Flex align="center" gap="8px" mb="5px">
+                      <Text
+                        fontFamily="var(--font-syne)"
+                        fontSize="17px"
+                        fontWeight="500"
+                        color="var(--text-1)"
+                        letterSpacing="0.01em"
+                      >
+                        {item.name}
+                      </Text>
+                    </Flex>
+                    <Text
+                      fontFamily="var(--font-syne)"
+                      fontSize="14px"
+                      color="var(--text-2)"
+                      lineHeight="1.7"
+                      fontWeight="500"
                     >
                       {item.desc}
                     </Text>

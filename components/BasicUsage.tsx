@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Flex, Heading, Icon, Text, Image, Link } from "@chakra-ui/react";
+import { Box, Heading, Icon, Text, Link } from "@chakra-ui/react";
 import { CodeSnippetBlock } from "./CodeBlock";
 import {
   projectCreationCommand,
@@ -24,7 +24,7 @@ const BasicUsage = () => {
             scrollMarginTop="80px"
           >
             <Heading
-              fontFamily="var(--font-display)"
+              fontFamily="var(--font-syne)"
               fontSize="30px"
               fontWeight="700"
               letterSpacing="-0.025em"
@@ -34,8 +34,8 @@ const BasicUsage = () => {
               Your First Project
             </Heading>
             <Text
-              fontFamily="var(--font-body)"
-              fontSize="15px"
+              fontFamily="var(--font-syne)"
+              fontSize="17px"
               color="var(--text-2)"
               mb="36px"
               fontWeight="300"
@@ -46,8 +46,8 @@ const BasicUsage = () => {
             </Text>
             <CodeSnippetBlock snippet={projectCreationCommand} />
             <Text
-              fontFamily="var(--font-body)"
-              fontSize="15px"
+              fontFamily="var(--font-syne)"
+              fontSize="17px"
               color="var(--text-2)"
               mt="24px"
               mb="20px"
@@ -68,7 +68,7 @@ const BasicUsage = () => {
             scrollMarginTop="80px"
           >
             <Heading
-              fontFamily="var(--font-display)"
+              fontFamily="var(--font-syne)"
               fontSize="30px"
               fontWeight="700"
               letterSpacing="-0.025em"
@@ -78,8 +78,8 @@ const BasicUsage = () => {
               Starting your server
             </Heading>
             <Text
-              fontFamily="var(--font-body)"
-              fontSize="15px"
+              fontFamily="var(--font-syne)"
+              fontSize="17px"
               color="var(--text-2)"
               mb="36px"
               fontWeight="300"
@@ -90,8 +90,8 @@ const BasicUsage = () => {
             </Text>
             <CodeSnippetBlock snippet={runServerCommand} />
             <Text
-              fontFamily="var(--font-body)"
-              fontSize="15px"
+              fontFamily="var(--font-syne)"
+              fontSize="17px"
               color="var(--text-2)"
               mt="24px"
               mb="20px"
@@ -104,8 +104,8 @@ const BasicUsage = () => {
             </Text>
             <CodeSnippetBlock snippet={runServerCommandResponse} />
             <Text
-              fontFamily="var(--font-body)"
-              fontSize="15px"
+              fontFamily="var(--font-syne)"
+              fontSize="17px"
               color="var(--text-2)"
               mt="24px"
               mb="20px"
@@ -151,7 +151,7 @@ const BasicUsage = () => {
                 Up next
               </Text>
               <Text
-                fontFamily="var(--font-display)"
+                fontFamily="var(--font-syne)"
                 fontSize="14px"
                 fontWeight="600"
                 color="var(--text-1)"

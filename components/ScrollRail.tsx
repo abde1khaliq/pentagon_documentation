@@ -113,7 +113,7 @@ export const ScrollRail = () => {
                 as="span"
                 fontFamily="var(--font-body)"
                 fontSize="12.5px"
-                fontWeight={isActive ? 500 : 400}
+                fontWeight={500}
                 color={isActive ? "var(--accent-bright)" : "var(--text-3)"}
                 transition="color 180ms cubic-bezier(0.4,0,0.2,1), font-weight 180ms ease"
                 lineHeight="1.4"
