@@ -1,13 +1,17 @@
 import { CodeBlock, createShikiAdapter, Icon } from "@chakra-ui/react"
 import type { HighlighterGeneric } from "shiki"
 
+let highlighter: HighlighterGeneric<any, any> | null = null
+
 const shikiAdapter = createShikiAdapter<HighlighterGeneric<any, any>>({
   async load() {
+    if (highlighter) return highlighter
     const { createHighlighter } = await import("shiki")
-    return createHighlighter({
+    highlighter = await createHighlighter({
       langs: ["python", "bash"],
       themes: ["github-dark"],
     })
+    return highlighter
   },
   theme: "github-dark",
 })
