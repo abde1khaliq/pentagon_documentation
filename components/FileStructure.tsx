@@ -238,7 +238,7 @@ const FileStructure = () => {
               borderColor: "var(--border-mid)",
               bg: "var(--bg-raised)",
             }}
-            href="/file-structure"
+            href="/your-first-project/runserver"
             textDecoration="none"
             cursor="pointer"
           >
@@ -260,7 +260,7 @@ const FileStructure = () => {
                 color="var(--text-1)"
                 letterSpacing="-0.01em"
               >
-                File Structure
+                runserver.py
               </Text>
             </Box>
             <Icon as={BsArrowRight} boxSize="16px" color="var(--text-3)" />

@@ -48,8 +48,41 @@ const NAV: NavGroup[] = [
         children: [
           { kind: "leaf", title: "Creating a Project", id: "your-first-project" },
           { kind: "leaf", title: "File Structure",     id: "file-structure" },
+          { kind: "leaf", title: "runserver.py",       id: "your-first-project/runserver" },
+          { kind: "leaf", title: "config.py",          id: "your-first-project/config" },
+          { kind: "leaf", title: "database/connection.py", id: "your-first-project/database" },
+          { kind: "leaf", title: "router/index.py",     id: "your-first-project/router" },
         ],
       },
+    ],
+  },
+  {
+    label: "Tutorial",
+    items: [
+      {
+        kind: "tree",
+        title: "Task API",
+        id: "tutorial",
+        children: [
+          { kind: "leaf", title: "Overview", id: "tutorial" },
+          { kind: "leaf", title: "Initializing the Project", id: "tutorial/step-0" },
+          { kind: "leaf", title: "Defining the Task Model", id: "tutorial/step-1" },
+          { kind: "leaf", title: "Creating Data Schemas", id: "tutorial/step-2" },
+          { kind: "leaf", title: "Implementing the Service Layer", id: "tutorial/step-3" },
+          { kind: "leaf", title: "Building the Endpoints", id: "tutorial/step-4" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Learn",
+    items: [
+      { kind: "leaf", title: "Routing", id: "routing" },
+      { kind: "leaf", title: "Models & ORM", id: "models" },
+      { kind: "leaf", title: "Database & ORM", id: "database" },
+      { kind: "leaf", title: "Schemas & Validation", id: "schemas" },
+      { kind: "leaf", title: "Service Layer", id: "services" },
+      { kind: "leaf", title: "API Docs", id: "api-docs" },
     ],
   },
 ];
