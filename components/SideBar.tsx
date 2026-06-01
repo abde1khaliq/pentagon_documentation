@@ -1,13 +1,26 @@
-import { Box, Flex, Icon, Link, Text } from "@chakra-ui/react";
+"use client";
+
+import {
+  Box,
+  Flex,
+  Icon,
+  Link as ChakraLink,
+  Text,
+  Input,
+  InputGroup,
+  Image,
+} from "@chakra-ui/react";
 import { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import { BsGithub } from "react-icons/bs";
+import NextLink from "next/link";
+import { usePathname } from "next/navigation";
 
 const SideBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const pathname = usePathname();
 
-  const sections = [
-    { id: "introduction", title: "Introduction", number: "01" },
+  const sections = [{ id: "", title: "Introduction" }, { id: "your-first-project", title: "Your First Project" }, { id: "file-structure", title: "File Structure" },
   ];
 
   const filteredSections = sections.filter((s) =>
@@ -15,124 +28,173 @@ const SideBar = () => {
   );
 
   return (
-    <Box
-      style={{
-        position: "sticky" as any,
-        top: 0,
-        height: "100vh",
-        width: 280,
-        flexShrink: 0,
-        background: "var(--bg-surface)",
-        borderRight: "1px solid var(--border)",
-        overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-        zIndex: 40,
-      }}
+    <Flex
+      position="sticky"
+      top={0}
+      height="100vh"
+      width="260px"
+      flexShrink={0}
+      bg="var(--bg-surface)"
+      borderRight="1px solid var(--border)"
+      overflow="hidden"
+      flexDirection="column"
+      zIndex={40}
     >
-      {/* Logo */}
+      {/* ── Logo ── */}
       <Flex
-        style={{
-          alignItems: "center",
-          gap: 12,
-          padding: "15px 15px 15px",
-          borderBottom: "1px solid var(--border)",
-        }}
+        align="center"
+        gap={3}
+        px={4}
+        py={4}
+        borderBottom="1px solid var(--border)"
       >
-        <img
+        <Image
           src="https://ik.imagekit.io/cin2tn3bj/penta_logo_white.png"
           alt="Pentagon"
-          style={{ width: 36, height: 36, objectFit: "contain" }}
+          width="34px"
+          height="34px"
+          objectFit="contain"
         />
       </Flex>
 
-      {/* Search */}
-      <Box style={{ padding: "16px 16px 0" }}>
-        <div style={{ position: "relative" }}>
-          <BiSearch
-            style={{
-              position: "absolute",
-              left: 12,
-              top: "50%",
-              transform: "translateY(-50%)",
-              color: "var(--text-3)",
-              pointerEvents: "none",
-            }}
-          />
-          <input
-            className="search-input"
-            placeholder="Search docs…"
-            value={searchQuery}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setSearchQuery(e.target.value)
-            }
-            style={{
-              width: "100%",
-              padding: "9px 12px 9px 34px",
-              background: "var(--bg-raised)",
-              border: "1px solid var(--border)",
-              borderRadius: 8,
-              color: "var(--text-1)",
-              fontFamily: "var(--font-body)",
-              fontSize: 13,
-              outline: "none",
-              transition: "border-color 0.2s, box-shadow 0.2s",
-            }}
-          />
-        </div>
-      </Box>
-
-      {/* Nav — pure page links, no active state */}
-      <Box style={{ flex: 1, overflowY: "auto", padding: "20px 12px" }}>
-        <Text
-          fontSize={13}
-          color="white"
-          fontWeight={500}
-          textTransform="uppercase"
-          marginBottom={1}
-          padding="0 8px"
-        >
-          DOCUMENTATION
-        </Text>
-        {filteredSections.map((section) => (
-          <button key={section.id} className="nav-btn">
-            <span
-              style={{
-                fontSize: 10,
-                color: "var(--text-4)",
-                letterSpacing: "0.04em",
-                flexShrink: 0,
-              }}
+      {/* ── Search ── */}
+      <Box px={3} pt={3}>
+        <InputGroup>
+          <Box position="relative" width="100%">
+            <Box
+              as={BiSearch}
+              position="absolute"
+              left="10px"
+              top="50%"
+              transform="translateY(-50%)"
+              color="var(--text-3)"
+              pointerEvents="none"
+              fontSize="13px"
+              zIndex={1}
+            />
+            <Input
+              placeholder="Search.."
+              value={searchQuery}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setSearchQuery(e.target.value)
+              }
+              pl="32px"
+              pr="60px"
+              py="8px"
+              h="auto"
+              bg="var(--bg-raised)"
+              border="1px solid var(--border)"
+              borderRadius="8px"
+              color="var(--text-1)"
+              fontFamily="var(--font-body)"
+              fontSize="12.5px"
+              _placeholder={{ color: "var(--text-3)" }}
+              _focus={{ outline: "none" }}
+            />
+            <Text
+              position="absolute"
+              right="12px"
+              top="50%"
+              transform="translateY(-50%)"
+              fontFamily="var(--font-mono)"
+              fontSize="11px"
+              color="var(--text-3)"
+              bg="var(--bg-surface)"
+              border="1px solid var(--border)"
+              borderRadius="4px"
+              px="6px"
+              py="2px"
+              pointerEvents="none"
             >
-              {section.number}
-            </span>
-            {section.title}
-          </button>
-        ))}
+              {navigator.platform.includes("Mac") ? "⌘ K" : "Ctrl K"}
+            </Text>
+          </Box>
+        </InputGroup>
       </Box>
 
-      {/* Footer */}
-      <Box
-        style={{
-          padding: "16px 24px",
-          borderTop: "1px solid var(--border)",
-        }}
-      >
-        <Flex style={{ alignItems: "center", justifyContent: "space-between" }}>
-          <Link href="https://github.com/abde1khaliq/pentagon">
-            <Icon
-              as={BsGithub}
-              boxSize={4}
-              color={"gray.500"}
-              transition={"0.2s ease"}
-              _hover={{ color: "white" }}
-            ></Icon>
-          </Link>
+      {/* ── Nav ── */}
+      <Box flex={1} overflowY="auto" px={2} pt={4} pb={2}>
+        <Text
+          fontFamily="var(--font-syne)"
+          fontSize="12px"
+          color="white"
+          fontWeight={600}
+          textTransform="uppercase"
+          px={2}
+          mb={2}
+          mt={5}
+          display="block"
+        >
+          Documentation
+        </Text>
+
+        <Flex direction="column" gap="1px">
+          {filteredSections.map((section) => {
+            const href = `/${section.id}`;
+            const isActive = pathname === href;
+
+            return (
+              <ChakraLink
+                as={NextLink}
+                href={href}
+                key={section.id}
+                justifyContent="flex-start"
+                alignItems="center"
+                gap={2}
+                width="100%"
+                px={3}
+                py="7px"
+                h="30px"
+                borderRadius="7px"
+                bg={isActive ? "rgba(255,255,255,0.08)" : "transparent"}
+                color={isActive ? "var(--text-1)" : "var(--text-2)"}
+                fontFamily="var(--font-syne)"
+                fontSize="13px"
+                fontWeight={isActive ? 600 : 400}
+                textDecoration="none"
+                transition="all 250ms ease"
+                _hover={{
+                  bg: "rgba(255,255,255,0.055)",
+                  color: "var(--text-1)",
+                  transition: "all 80ms ease-in",
+                }}
+                _focus={{
+                  boxShadow: "none",
+                  outline: "none",
+                }}
+              >
+                {section.title}
+              </ChakraLink>
+            );
+          })}
         </Flex>
       </Box>
-    </Box>
+
+      {/* ── Footer ── */}
+      <Flex
+        align="center"
+        justify="space-between"
+        px={5}
+        py={3}
+        borderTop="1px solid var(--border)"
+      >
+        <ChakraLink
+          as={NextLink}
+          href="https://github.com/abde1khaliq/pentagon"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon
+            as={BsGithub}
+            boxSize="15px"
+            color="var(--text-3)"
+            transition="color 200ms cubic-bezier(0.4,0,0.2,1), transform 200ms cubic-bezier(0.4,0,0.2,1)"
+            _hover={{ color: "var(--text-1)" }}
+          />
+        </ChakraLink>
+      </Flex>
+    </Flex>
   );
 };
 
-
-export default SideBar
+export default SideBar;

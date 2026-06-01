@@ -1,175 +1,312 @@
-import { Box, Flex, Text, Heading, Image } from "@chakra-ui/react";
+import { Box, Flex, Text, Heading, Image, Link } from "@chakra-ui/react";
 import { CodeSnippetBlock } from "./CodeBlock";
+import { Icon } from "@chakra-ui/react";
+import { BsGithub, BsTwitterX, BsArrowRight } from "react-icons/bs";
 import {
   confirmationCommand,
   installationCommand,
   introCode,
 } from "@/app/data/CodeSnippets";
 import { ScrollRail } from "./ScrollRail";
-import SideBar from "./SideBar";
+import Footer from "./Footer";
+
+export const Divider = () => <Box height="1px" bg="var(--border)" my="64px" />;
 
 const LHome = () => {
   return (
     <>
-      <div className="noise-overlay" />
-      <ScrollRail />
-
-      <Flex
-        style={{
-          minHeight: "100vh",
-          background: "var(--bg-void)",
-          position: "relative",
-        }}
-      >
-        <SideBar/>
-        <Box className="main-content" style={{ flex: 1, minWidth: 0 }}>
+      <Box flex="1" minW="0" overflowY="auto">
+        <Box maxW="1000px" mx="auto" px="48px" pt="72px" pb="96px">
           <Box
-            style={{
-              maxWidth: 1000,
-              margin: "0 auto",
-              padding: "72px 48px 96px",
-            }}
+            id="hero"
+            data-section-title="Overview"
+            scrollMarginTop="80px"
+            position="relative"
+            zIndex="1"
+            mb="0"
           >
-            <Box style={{ position: "relative" }}>
-              <Box
-                id="introduction"
-                style={{ scrollMarginTop: 80, position: "relative", zIndex: 1 }}
+            <Flex align="center" gap="20px" mb="28px">
+              <Image
+                src="https://ik.imagekit.io/cin2tn3bj/penta_logo_white.png"
+                w="100px"
+                h="100px"
+              />
+              <Text
+                fontFamily="var(--font-display)"
+                fontSize="65px"
+                fontWeight="800"
+                letterSpacing="-0.04em"
+                color="var(--text-1)"
+                lineHeight="1"
+                mt="20px"
+              >
+                PENTAGON
+              </Text>
+            </Flex>
+
+            <Text
+              fontFamily="var(--font-body)"
+              fontSize="16px"
+              color="var(--text-2)"
+              lineHeight="1.75"
+              maxW="520px"
+              fontWeight="300"
+              mb="24px"
+            >
+              A modern, blazing‑fast high‑performance Python web framework built
+              for developers who want to ship APIs and applications without
+              boilerplate.
+            </Text>
+
+            {/* Author + links row */}
+            <Flex align="center" gap="6px" wrap="wrap">
+              {/* Avatar */}
+              <Link
+                as="a"
+                href="https://github.com/abde1khaliq"
+                target="_blank"
+                rel="noopener noreferrer"
+                display="flex"
+                alignItems="center"
+                gap="7px"
+                px="10px"
+                py="5px"
+                borderRadius="full"
+                border="1px solid var(--border-mid)"
+                bg="var(--bg-raised)"
+                transition="border-color 180ms ease, background 180ms ease"
+                _hover={{
+                  borderColor: "var(--border-hi)",
+                  bg: "var(--bg-hover)",
+                }}
+                textDecoration="none"
               >
                 <Image
-                  margin="0 0 24px"
-                  src="https://ik.imagekit.io/cin2tn3bj/penta_logo_white.png"
-                  w="100px"
-                  h="100px"
-                ></Image>
-
-                <Text
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: 16.5,
-                    color: "var(--text-2)",
-                    lineHeight: 1.75,
-                    maxWidth: 580,
-                    marginBottom: 40,
-                    fontWeight: 300,
-                  }}
-                >
-                  A modern, blazing fast high-performance Python web framework.
-                </Text>
-              </Box>
-            </Box>
-
-            <div className="divider" />
-
-            <Box id="introduction" style={{ scrollMarginTop: 80 }}>
-              <Heading
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: 32,
-                  fontWeight: 700,
-                  letterSpacing: "-0.025em",
-                  color: "var(--text-1)",
-                  marginBottom: 10,
-                }}
-              >
-                Introduction
-              </Heading>
-              <Text
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: 15,
-                  color: "var(--text-2)",
-                  marginBottom: 48,
-                  fontWeight: 300,
-                }}
-              >
-                Pentagon is a lightning‑fast Python web framework built for
-                developers who want to create APIs and web applications
-                effortlessly. It combines speed with a clean, intuitive file
-                structure, so you can focus on building instead of boilerplate.
-                take a look at how simple its syntax can be.
-              </Text>
-
-              <CodeSnippetBlock snippet={introCode} />
-            </Box>
-
-            <div className="divider" />
-
-            <Box id="installation" style={{ scrollMarginTop: 80 }}>
-              <Heading
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontSize: 32,
-                  fontWeight: 700,
-                  letterSpacing: "-0.025em",
-                  color: "var(--text-1)",
-                  marginBottom: 10,
-                }}
-              >
-                Installation
-              </Heading>
-              <Text
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: 15,
-                  color: "var(--text-2)",
-                  marginBottom: 48,
-                  fontWeight: 300,
-                }}
-              >
-                Installing Pentagon is very simple and straightforward. One
-                command is all it takes to get started:
-              </Text>
-
-              <CodeSnippetBlock snippet={installationCommand} />
-
-              <Text
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: 15,
-                  color: "var(--text-2)",
-                  marginTop: 20,
-                  marginBottom: 20,
-                  fontWeight: 300,
-                }}
-              >
-                To test and make sure everything is installed, run this command:
-              </Text>
-
-              <CodeSnippetBlock snippet={confirmationCommand} />
-            </Box>
-
-            {/* Footer */}
-            <Box
-              style={{
-                marginTop: 96,
-                paddingTop: 32,
-                borderTop: "1px solid var(--border)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <Flex style={{ alignItems: "center", gap: 10 }}>
-                <img
-                  src="https://ik.imagekit.io/cin2tn3bj/penta_logo_white.png"
-                  alt=""
-                  style={{ width: 20, height: 20, opacity: 0.4 }}
+                  src="https://github.com/abde1khaliq.png"
+                  alt="@abdelkhaliq"
+                  w="18px"
+                  h="18px"
+                  borderRadius="full"
+                  flexShrink={0}
                 />
                 <Text
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: 11,
-                    color: "var(--text-4)",
-                    margin: 0,
-                  }}
+                  fontFamily="var(--font-mono)"
+                  fontSize="11px"
+                  color="var(--text-2)"
+                  letterSpacing="0.02em"
                 >
-                  Pentagon Framework
+                  by @abdelkhaliq
                 </Text>
-              </Flex>
-            </Box>
+              </Link>
+
+              {/* Dot separator */}
+              <Box
+                w="3px"
+                h="3px"
+                borderRadius="full"
+                bg="var(--text-4)"
+                flexShrink={0}
+              />
+
+              {/* GitHub repo */}
+              <Link
+                as="a"
+                href="https://github.com/abde1khaliq/pentagon"
+                target="_blank"
+                rel="noopener noreferrer"
+                display="flex"
+                alignItems="center"
+                gap="6px"
+                px="10px"
+                py="5px"
+                borderRadius="full"
+                border="1px solid var(--border-mid)"
+                bg="var(--bg-raised)"
+                transition="border-color 180ms ease, background 180ms ease, color 180ms ease"
+                _hover={{
+                  borderColor: "var(--border-hi)",
+                  bg: "var(--bg-hover)",
+                }}
+                textDecoration="none"
+              >
+                <Icon as={BsGithub} boxSize="12px" color="var(--text-3)" />
+                <Text
+                  fontFamily="var(--font-mono)"
+                  fontSize="11px"
+                  color="var(--text-2)"
+                  letterSpacing="0.02em"
+                >
+                  abde1khaliq/pentagon
+                </Text>
+              </Link>
+
+              {/* Dot separator */}
+              <Box
+                w="3px"
+                h="3px"
+                borderRadius="full"
+                bg="var(--text-4)"
+                flexShrink={0}
+              />
+
+              {/* Twitter / X */}
+              <Link
+                as="a"
+                href="https://twitter.com/abdelkhaliq"
+                target="_blank"
+                rel="noopener noreferrer"
+                display="flex"
+                alignItems="center"
+                gap="6px"
+                px="10px"
+                py="5px"
+                borderRadius="full"
+                border="1px solid var(--border-mid)"
+                bg="var(--bg-raised)"
+                transition="border-color 180ms ease, background 180ms ease"
+                _hover={{
+                  borderColor: "var(--border-hi)",
+                  bg: "var(--bg-hover)",
+                }}
+                textDecoration="none"
+              >
+                <Icon as={BsTwitterX} boxSize="11px" color="var(--text-3)" />
+                <Text
+                  fontFamily="var(--font-mono)"
+                  fontSize="11px"
+                  color="var(--text-2)"
+                  letterSpacing="0.02em"
+                >
+                  @abdelkhaliq
+                </Text>
+              </Link>
+            </Flex>
           </Box>
+
+          <Divider />
+
+          <Box
+            id="introduction"
+            data-section-title="Introduction"
+            scrollMarginTop="80px"
+          >
+            <Heading
+              fontFamily="var(--font-display)"
+              fontSize="30px"
+              fontWeight="700"
+              letterSpacing="-0.025em"
+              color="var(--text-1)"
+              mb="12px"
+            >
+              What is Pentagon?
+            </Heading>
+            <Text
+              fontFamily="var(--font-body)"
+              fontSize="15px"
+              color="var(--text-2)"
+              mb="36px"
+              fontWeight="300"
+              lineHeight="1.8"
+            >
+              Pentagon is a lightning‑fast Python web framework built for
+              developers who want to create APIs and web applications
+              effortlessly. It combines speed with a clean, intuitive file
+              structure, so you can focus on building instead of boilerplate.
+              Take a look at how simple its syntax can be.
+            </Text>
+            <CodeSnippetBlock snippet={introCode} />
+          </Box>
+
+          <Divider />
+
+          <Box
+            id="installation"
+            data-section-title="Installation"
+            scrollMarginTop="80px"
+          >
+            <Heading
+              fontFamily="var(--font-display)"
+              fontSize="30px"
+              fontWeight="700"
+              letterSpacing="-0.025em"
+              color="var(--text-1)"
+              mb="12px"
+            >
+              Installation
+            </Heading>
+            <Text
+              fontFamily="var(--font-body)"
+              fontSize="15px"
+              color="var(--text-2)"
+              mb="36px"
+              fontWeight="300"
+              lineHeight="1.8"
+            >
+              Installing Pentagon is simple and straightforward. One command is
+              all it takes to get started:
+            </Text>
+            <CodeSnippetBlock snippet={installationCommand} />
+            <Text
+              fontFamily="var(--font-body)"
+              fontSize="15px"
+              color="var(--text-2)"
+              mt="24px"
+              mb="20px"
+              fontWeight="300"
+              lineHeight="1.8"
+            >
+              To confirm everything installed correctly, run:
+            </Text>
+            <CodeSnippetBlock snippet={confirmationCommand} />
+          </Box>
+
+          <Link
+            display="flex"
+            alignItems="center"
+            justifyContent="space-between"
+            mt="80px"
+            px="24px"
+            py="18px"
+            borderRadius="10px"
+            border="1px solid var(--border)"
+            bg="var(--bg-surface)"
+            transition="border-color 200ms ease, background 200ms ease"
+            _hover={{
+              borderColor: "var(--border-mid)",
+              bg: "var(--bg-raised)",
+            }}
+            href="/your-first-project"
+            textDecoration="none"
+            cursor="pointer"
+          >
+            <Box>
+              <Text
+                fontFamily="var(--font-mono)"
+                fontSize="9px"
+                color="var(--text-3)"
+                letterSpacing="0.12em"
+                textTransform="uppercase"
+                mb="4px"
+              >
+                Up next
+              </Text>
+              <Text
+                fontFamily="var(--font-display)"
+                fontSize="14px"
+                fontWeight="600"
+                color="var(--text-1)"
+                letterSpacing="-0.01em"
+              >
+                Quick Start
+              </Text>
+            </Box>
+            <Icon as={BsArrowRight} boxSize="16px" color="var(--text-3)" />
+          </Link>
+
+          <Footer />
         </Box>
-      </Flex>
+      </Box>
+      <ScrollRail />
     </>
   );
 };
